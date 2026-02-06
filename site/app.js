@@ -522,6 +522,36 @@ function buildCard(type, year, aggregates, units, options = {}) {
   return card;
 }
 
+function buildEmptyYearCard(type, year) {
+  const card = document.createElement("div");
+  card.className = "card card-empty-year";
+
+  const title = document.createElement("div");
+  title.className = "card-title";
+  title.textContent = String(year);
+  card.appendChild(title);
+
+  const body = document.createElement("div");
+  body.className = "card-body empty-year-body";
+
+  const placeholder = document.createElement("div");
+  placeholder.className = "year-empty-placeholder";
+
+  const ellipsis = document.createElement("span");
+  ellipsis.className = "year-empty-ellipsis";
+  ellipsis.textContent = "\u22ee";
+  placeholder.appendChild(ellipsis);
+
+  const message = document.createElement("span");
+  message.className = "year-empty-message";
+  message.textContent = `no ${displayType(type).toLowerCase()} activities`;
+  placeholder.appendChild(message);
+
+  body.appendChild(placeholder);
+  card.appendChild(body);
+  return card;
+}
+
 function combineYearAggregates(yearData, types) {
   const combined = {};
   types.forEach((type) => {
@@ -607,6 +637,37 @@ function shouldHideDistanceElevation(payload, types, years) {
     }
   }
   return true;
+}
+
+function getTypeYearTotals(payload, type, years) {
+  const totals = new Map();
+  years.forEach((year) => {
+    const entries = payload.aggregates?.[String(year)]?.[type] || {};
+    let total = 0;
+    Object.values(entries).forEach((entry) => {
+      total += entry.count || 0;
+    });
+    totals.set(year, total);
+  });
+  return totals;
+}
+
+function trimOldestEmptyYears(years, yearTotals) {
+  if (!years.length) return [];
+  const yearsAsc = years.slice().sort((a, b) => a - b);
+  let firstActiveYear = null;
+  yearsAsc.forEach((year) => {
+    if (firstActiveYear !== null) return;
+    if ((yearTotals.get(year) || 0) > 0) {
+      firstActiveYear = year;
+    }
+  });
+
+  if (firstActiveYear === null) {
+    return [years[0]];
+  }
+
+  return years.filter((year) => year >= firstActiveYear);
 }
 
 function buildStatRow() {
@@ -1315,12 +1376,19 @@ async function init() {
 
           const list = document.createElement("div");
           list.className = "type-list";
+          const yearTotals = getTypeYearTotals(payload, type, years);
+          const cardYears = selectedYear === "all"
+            ? trimOldestEmptyYears(years, yearTotals)
+            : years.slice();
           if (showMoreStats) {
-            list.appendChild(buildStatsOverview(payload, [type], years, selectedType));
+            list.appendChild(buildStatsOverview(payload, [type], cardYears, selectedType));
           }
-          years.forEach((year) => {
+          cardYears.forEach((year) => {
             const aggregates = payload.aggregates?.[String(year)]?.[type] || {};
-            const card = buildCard(type, year, aggregates, payload.units || { distance: "mi", elevation: "ft" });
+            const total = yearTotals.get(year) || 0;
+            const card = total > 0
+              ? buildCard(type, year, aggregates, payload.units || { distance: "mi", elevation: "ft" })
+              : buildEmptyYearCard(type, year);
             list.appendChild(card);
           });
           if (!list.childElementCount) {
