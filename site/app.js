@@ -83,6 +83,13 @@ function saturdayOnOrAfter(d) {
   return result;
 }
 
+function formatLocalDateKey(date) {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const d = String(date.getDate()).padStart(2, "0");
+  return `${y}-${m}-${d}`;
+}
+
 function hexToRgb(hex) {
   const cleaned = hex.replace("#", "");
   if (cleaned.length !== 6) return null;
@@ -356,7 +363,7 @@ function buildHeatmapArea(aggregates, year, units, colors, type, layout, options
   grid.className = "grid";
 
   for (let day = new Date(start); day <= end; day.setDate(day.getDate() + 1)) {
-    const dateStr = day.toISOString().slice(0, 10);
+    const dateStr = formatLocalDateKey(day);
     const inYear = day.getFullYear() === year;
     const entry = (aggregates && aggregates[dateStr]) || {
       count: 0,
@@ -1190,7 +1197,13 @@ async function init() {
   if (payload.generated_at) {
     const updatedAt = new Date(payload.generated_at);
     if (!Number.isNaN(updatedAt.getTime())) {
-      updated.textContent = `Last updated: ${updatedAt.toLocaleString()}`;
+      updated.textContent = `Last updated: ${updatedAt.toLocaleString([], {
+        year: "numeric",
+        month: "numeric",
+        day: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+      })}`;
     }
   }
 
