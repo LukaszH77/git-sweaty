@@ -591,11 +591,11 @@ Elevation: 460 m</title></rect>
 Distance: 0.00 km
 Duration: 0m
 Elevation: 0 m</title></rect>
-<rect x="224" y="70" width="12" height="12" fill="#1f2937" stroke="#0f172a" stroke-width="1" data-date="2026-04-24"><title>2026-04-24
-0 workouts
-Distance: 0.00 km
-Duration: 0m
-Elevation: 0 m</title></rect>
+<rect x="224" y="70" width="12" height="12" fill="#05ffa1" stroke="#0f172a" stroke-width="1" data-date="2026-04-24"><title>2026-04-24
+1 workout
+Distance: 14.57 km
+Duration: 1h 9m
+Elevation: 131 m</title></rect>
 <rect x="224" y="84" width="12" height="12" fill="#1f2937" stroke="#0f172a" stroke-width="1" data-date="2026-04-25"><title>2026-04-25
 0 workouts
 Distance: 0.00 km
@@ -611,16 +611,16 @@ Elevation: 0 m</title></rect>
 Distance: 100.61 km
 Duration: 6h 1m
 Elevation: 389 m</title></rect>
-<rect x="238" y="28" width="12" height="12" fill="#1f2937" stroke="#0f172a" stroke-width="1" data-date="2026-04-28"><title>2026-04-28
-0 workouts
-Distance: 0.00 km
-Duration: 0m
-Elevation: 0 m</title></rect>
-<rect x="238" y="42" width="12" height="12" fill="#05ffa1" stroke="#0f172a" stroke-width="1" data-date="2026-04-29"><title>2026-04-29
+<rect x="238" y="28" width="12" height="12" fill="#05ffa1" stroke="#0f172a" stroke-width="1" data-date="2026-04-28"><title>2026-04-28
 1 workout
-Distance: 15.86 km
-Duration: 1h 13m
-Elevation: 89 m</title></rect>
+Distance: 13.18 km
+Duration: 52m
+Elevation: 193 m</title></rect>
+<rect x="238" y="42" width="12" height="12" fill="#05ffa1" stroke="#0f172a" stroke-width="1" data-date="2026-04-29"><title>2026-04-29
+3 workouts
+Distance: 26.52 km
+Duration: 1h 52m
+Elevation: 152 m</title></rect>
 <rect x="238" y="56" width="12" height="12" fill="#1f2937" stroke="#0f172a" stroke-width="1" data-date="2026-04-30"><title>2026-04-30
 0 workouts
 Distance: 0.00 km
