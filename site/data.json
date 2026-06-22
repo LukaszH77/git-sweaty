@@ -8879,6 +8879,18 @@
       "hour": 19,
       "type": "Ride",
       "year": 2026
+    },
+    {
+      "date": "2026-06-21",
+      "hour": 9,
+      "type": "Ride",
+      "year": 2026
+    },
+    {
+      "date": "2026-06-22",
+      "hour": 7,
+      "type": "Ride",
+      "year": 2026
     }
   ],
   "aggregates": {
@@ -20571,11 +20583,29 @@
           "distance": 35707.0,
           "elevation_gain": 115.0,
           "moving_time": 5246.0
+        },
+        "2026-06-21": {
+          "activity_ids": [
+            19008707217
+          ],
+          "count": 1,
+          "distance": 51083.0,
+          "elevation_gain": 271.0,
+          "moving_time": 9336.0
+        },
+        "2026-06-22": {
+          "activity_ids": [
+            19020653331
+          ],
+          "count": 1,
+          "distance": 42576.9,
+          "elevation_gain": 205.0,
+          "moving_time": 7418.0
         }
       }
     }
   },
-  "generated_at": "2026-06-21T09:52:21.414310+00:00",
+  "generated_at": "2026-06-22T11:57:48.702151+00:00",
   "type_meta": {
     "Ride": {
       "accent": "#05ffa1",
